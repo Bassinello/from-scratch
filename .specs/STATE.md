@@ -1,7 +1,7 @@
 # STATE.md - Projeto: Gerenciador de Tarefas (Task Manager)
 
 **Última atualização:** 2026-08-29  
-**Status:** ⏸️ PAUSADO - Fase de Implementação (Backend OK, Frontend em progresso)
+**Status:** ⏸️ PAUSADO - MVP completo (Backend OK, Frontend OK) - falta validação E2E manual
 
 ---
 
@@ -9,7 +9,7 @@
 
 ### Branches e Commits
 - **Branch:** main
-- **Último commit:** `87a032a` - "fix: corrige validadores PyObjectId para Pydantic v2 e serialização de ObjectId"
+- **Último commit:** `f292d2f` - "feat: cria frontend React com Vite e componente de tarefas conectado a API"
 - **Remote:** origin/main (GitHub Bassinello/from-scratch)
 
 ### Estado de Trabalho
@@ -140,12 +140,18 @@ Frontend:
 
 ---
 
-### Frontend (Fase: Setup Inicial) 🏗️
+### Frontend (Fase: Execute) ✅
 
 | # | Tarefa | Status | Arquivo |
 |---|--------|--------|---------|
-| T-013 | Criar estrutura base React com Vite | ⏳ IN-PROGRESS | frontend/ |
-| T-014 | Instalar dependências (react, axios, etc) | ⏳ IN-PROGRESS | package.json |
+| T-013 | Criar estrutura base React com Vite | ✅ | frontend/ |
+| T-014 | Instalar dependências (react, axios, etc) | ✅ | package.json |
+| T-015 | Criar cliente API (axios) | ✅ | frontend/src/api.js |
+| T-016 | Implementar componente de tarefas (listar/criar/concluir/excluir) | ✅ | frontend/src/App.jsx |
+| T-017 | Estilizar lista de tarefas | ✅ | frontend/src/App.css |
+| T-018 | Validar build de produção (vite build) | ✅ | — |
+
+**Testes:** ✅ Build de produção passou sem erros (`vite build` - 73 módulos, 449ms)
 
 ---
 
@@ -197,37 +203,39 @@ Documentação: Inline no código
 
 ---
 
-### Frontend: 🏗️ 20% COMPLETO
+### Frontend: ✅ 100% MVP COMPLETO
 
 ```
-Setup: Iniciado (estrutura básica criada)
-Componentes: Por fazer
-API Client: Por fazer
-Testes: Por fazer
+Setup: ✅ Vite + React 19
+Componentes: ✅ App.jsx (form + lista + toggle + delete)
+API Client: ✅ axios (api.js)
+Build: ✅ vite build passou (449ms)
+Testes: ⏳ Manual apenas (sem E2E ainda)
 ```
 
 **O que foi feito:**
-- ✅ Pasta `frontend/` criada
-- ⏳ package.json iniciado
-- ⏳ Configuração Vite parcial
+- ✅ Scaffold Vite + React 19
+- ✅ axios instalado e configurado (baseURL localhost:8000)
+- ✅ Componente único `App.jsx` com CRUD completo (create, list, toggle, delete)
+- ✅ CSS simplificado para lista de tarefas
+- ✅ Build de produção validado
 
-**O que falta:**
-- [ ] Instalar dependências npm (npm install)
-- [ ] Criar componentes React (TaskList, TaskForm, TaskItem)
-- [ ] Integrar axios com backend
-- [ ] Estilização básica (CSS/Tailwind)
-- [ ] Testes E2E
+**O que falta (não-MVP):**
+- [ ] Rodar `npm run dev` e validar E2E com backend rodando
+- [ ] Separar em componentes menores (TaskList, TaskForm, TaskItem) se crescer
+- [ ] Testes automatizados
+- [ ] Estilização avançada
 
 ---
 
 ## 🎯 PRÓXIMOS PASSOS (Ordem Recomendada)
 
-### Fase 1: Completar Frontend (⏳ In-Progress)
+### Fase 1: Validação E2E Manual (Próxima)
 ```
-1. npm install (em frontend/)
-2. Criar componentes React
-3. Conectar API
-4. Testar E2E
+1. Terminal 1: MongoDB rodando
+2. Terminal 2: cd backend && python3 -m uvicorn main:app --reload
+3. Terminal 3: cd frontend && npm run dev
+4. Abrir http://localhost:5173 e testar criar/listar/concluir/excluir
 ```
 
 ### Fase 2: Testes Backend (Opcional)
