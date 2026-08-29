@@ -1,0 +1,26 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+
+# Saídas comuns de ferramentas
+node_modules/
+dist/
+build/
+coverage/
+__pycache__/
+*.py[cod]
+
+# Logs
+*.log
