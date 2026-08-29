@@ -1,7 +1,7 @@
 # STATE.md - Projeto: Gerenciador de Tarefas (Task Manager)
 
 **Última atualização:** 2026-08-29  
-**Status:** ⏸️ PAUSADO - MVP completo (Backend OK, Frontend OK) - falta validação E2E manual
+**Status:** ✅ MVP VALIDADO END-TO-END - Backend + Frontend rodando e testados juntos
 
 ---
 
@@ -9,7 +9,7 @@
 
 ### Branches e Commits
 - **Branch:** main
-- **Último commit:** `f292d2f` - "feat: cria frontend React com Vite e componente de tarefas conectado a API"
+- **Último commit:** `dd973c4` - "fix: corrige metodo PUT para PATCH em update_task (spec REQ-003 exigia PATCH)"
 - **Remote:** origin/main (GitHub Bassinello/from-scratch)
 
 ### Estado de Trabalho
@@ -230,13 +230,29 @@ Testes: ⏳ Manual apenas (sem E2E ainda)
 
 ## 🎯 PRÓXIMOS PASSOS (Ordem Recomendada)
 
-### Fase 1: Validação E2E Manual (Próxima)
+### Fase 1: Validação E2E Manual ✅ CONCLUÍDA
 ```
-1. Terminal 1: MongoDB rodando
-2. Terminal 2: cd backend && python3 -m uvicorn main:app --reload
-3. Terminal 3: cd frontend && npm run dev
-4. Abrir http://localhost:5173 e testar criar/listar/concluir/excluir
+1. Terminal 1: MongoDB rodando (porta 27017)
+2. Terminal 2: backend uvicorn rodando (porta 8000)
+3. Terminal 3: frontend vite rodando (porta 5173)
+4. Testado no navegador: criar, marcar concluída, excluir → TODOS PASS
 ```
+
+**Resultado da validação (Playwright, 2026-08-29):**
+
+| Ação | Resultado |
+|------|-----------|
+| Abrir tela | ✅ Carregou tarefas existentes do MongoDB |
+| Criar tarefa | ✅ Nova tarefa aparece na lista |
+| Marcar concluída | ⚠️ FALHOU (405) → ✅ CORRIGIDO |
+| Excluir tarefa | ✅ Removida da lista |
+
+**Bug encontrado e corrigido:**
+- **Sintoma:** Toggle "concluída" retornava `405 Method Not Allowed`
+- **Causa raiz:** Backend implementava `PUT /api/tasks/{id}`, mas spec REQ-003 e frontend usam `PATCH` (semântica correta para atualização parcial)
+- **Fix:** `backend/main.py` — trocado decorator `@app.put` por `@app.patch` na função `update_task`
+- **Commit:** `dd973c4`
+- **Lição:** Ao especificar um método HTTP no spec (REQ-003: "Endpoint PATCH"), validar que a implementação usa o verbo exato — PUT e PATCH não são intercambiáveis para o cliente
 
 ### Fase 2: Testes Backend (Opcional)
 ```
