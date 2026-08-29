@@ -86,9 +86,9 @@ async def get_task(task_id: str):
     return Task(**task)
 
 
-@app.put("/api/tasks/{task_id}", response_model=Task, tags=["Tasks"])
+@app.patch("/api/tasks/{task_id}", response_model=Task, tags=["Tasks"])
 async def update_task(task_id: str, task_update: TaskUpdate):
-    """Atualizar uma tarefa"""
+    """Atualizar uma tarefa (atualização parcial)"""
     try:
         obj_id = ObjectId(task_id)
     except:
