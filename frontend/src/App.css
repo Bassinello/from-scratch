@@ -1,0 +1,39 @@
+﻿#tasks {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 0 16px;
+  font-family: system-ui, sans-serif;
+}
+
+#tasks form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+#tasks input[type=text] {
+  flex: 1;
+  padding: 8px;
+}
+
+#tasks ul {
+  list-style: none;
+  padding: 0;
+}
+
+#tasks li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#tasks li.done strong {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.error {
+  color: #c00;
+}
